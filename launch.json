@@ -1,0 +1,24 @@
+{
+  "kind": "custom_token",
+  "token": {
+    "contract": "KiteToken",
+    "name": "Kite",
+    "symbol": "KITE",
+    "decimals": 18,
+    "constructorArgs": [],
+    "totalSupply": "1000000000000000000000000000"
+  },
+  "contracts": [],
+  "pool": {
+    "pairedCurrency": "0x0000000000000000000000000000000000000000",
+    "fee": 12500,
+    "tickSpacing": 60,
+    "initialPrice": "79228162514264337593543950336"
+  },
+  "economics": {
+    "poolBps": 8800,
+    "initialMarketCapWei": "10000000000000000000",
+    "remainderTo": "0xbdd848d77af9e2a9c8def8fbfa6fd3a36c7dfde7"
+  },
+  "notes": "KiteToken (src/KiteToken.sol) is a self-contained fixed-supply ERC-20: name Kite, symbol KITE, 18 decimals. Its constructor takes no arguments and mints the whole supply of 1,000,000,000 KITE (1000000000000000000000000000 minor units) once to msg.sender, the factory, and emits a single Transfer from the zero address. totalSupply() returns a compile-time constant; there is no mint, burn, owner, minter, pause, blocklist, fee, tax, reflection, proxy or initializer, so the supply can never grow or shrink and no privileged call can move or freeze a holder. transfer and transferFrom move exactly the amount requested, so every launch flow (factory to the MerkleDistributor, distributor to claimants, factory to the pool through the PoolManager, trader to and from the pool) arrives whole; nothing needs an exemption, which is why constructorArgs is empty and the token does not take $factory, $poolManager or $launchNumber. approve overwrites; an allowance of type(uint256).max is unlimited and not decremented; zero-address senders, receivers and spenders revert with typed errors. The runtime contains no DELEGATECALL, CALLCODE or SELFDESTRUCT and links no libraries. No application contracts are deployed with this launch, so contracts is empty. The pool pairs with native ETH at the launch policy's 1.25% fee with tick spacing 60; initialPrice is provenance only, the deployer derives the opening price from economics.initialMarketCapWei and totalSupply. The factory takes the swarm's share, seeds the pool with poolBps of the supply and forwards the remainder to economics.remainderTo; the token itself holds no allocation and knows nothing about the launch."
+}
